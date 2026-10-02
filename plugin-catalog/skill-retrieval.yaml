@@ -8,8 +8,12 @@ description: >-
   full skill descriptions per turn via the pre_llm_call hook, so the system prompt stays
   compact and prompt caching is unaffected. Extends Hermes only through public surfaces
   (register_middleware, register hook, register_system_prompt_section) — no core overrides.
-  Reads SKILL.md frontmatter from the profile's skill roots; no API keys, no network, no
-  files written; pyyaml is the only dependency.
+  Reads SKILL.md frontmatter from the profile's skill roots; pyyaml is the only base
+  dependency. Optional Jev rerank (SKILL_RETRIEVAL_RERANK=jev): reranks the BM25 top-N
+  shortlist via the typesafe.ai systemone API (model jev-latest) — an outbound HTTPS call,
+  off by default, fail-soft with 3.0s timeout and no retries (BM25 order stands on error).
+  Key TYPESAFE_API_KEY read from $HERMES_HOME/.env only; writes only the A/B log JSONL
+  under $HERMES_HOME/data/jev-trial/. BM25 corpus also scores frontmatter triggers/tags.
 maintainer: moonlight-lupin
 tier: community
 category: tools
