@@ -1,6 +1,6 @@
 name: skill-retrieval
 repo: https://github.com/moonlight-lupin/agent-skills
-sha: 54b2bb92aa8a915c0f13eaac319aef6eb4b6b302
+sha: 79801c69e797f5f8efd619f8f451ca89d18c7240
 subdir: plugins/skill-retrieval
 description: >-
   BM25-based skill retrieval for large skill libraries — rewrites the outgoing request's
@@ -11,14 +11,16 @@ description: >-
   Reads SKILL.md frontmatter from the profile's skill roots; pyyaml is the only base
   dependency. Optional Jev rerank (SKILL_RETRIEVAL_RERANK=jev): reranks the BM25 top-N
   shortlist via the typesafe.ai systemone API (model jev-latest) — an outbound HTTPS call,
-  off by default, fail-soft with 3.0s timeout and no retries (BM25 order stands on error).
-  Key TYPESAFE_API_KEY read from $HERMES_HOME/.env only; writes only the A/B log JSONL
-  under $HERMES_HOME/data/jev-trial/. BM25 corpus also scores frontmatter triggers/tags.
+  off by default, fail-soft with 3.0s timeout and no retries (BM25 order stands on error),
+  sending at most 12 descriptions (400 chars each) plus the neutralized query (2000 chars).
+  Key TYPESAFE_API_KEY (legacy TYPESAFE_KEY) read from os.environ only; writes only the
+  A/B log JSONL under $HERMES_HOME/data/jev-trial/ (rotates past 5 MB). BM25 corpus also
+  scores frontmatter triggers/tags.
 maintainer: moonlight-lupin
 tier: community
 category: tools
 requires_hermes: ">=0.21.1"
-version: "0.4.0"
+version: "0.6.0"
 capabilities:
   provides_tools: []
   provides_hooks:
