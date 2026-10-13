@@ -1,6 +1,6 @@
 name: skill-retrieval
 repo: https://github.com/moonlight-lupin/agent-skills
-sha: 79801c69e797f5f8efd619f8f451ca89d18c7240
+sha: 8bbbdbab380c7f01c7902bd91308fe532a6923eb
 subdir: plugins/skill-retrieval
 description: >-
   BM25-based skill retrieval for large skill libraries. An llm_request middleware rewrites
@@ -20,7 +20,7 @@ maintainer: moonlight-lupin
 tier: community
 category: tools
 requires_hermes: ">=0.21.1"
-version: "0.6.0"
+version: "0.6.1"
 capabilities:
   provides_tools: []
   provides_hooks:
